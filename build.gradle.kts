@@ -13,6 +13,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
@@ -39,6 +40,14 @@ tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs += "-Xjsr305=strict"
 		jvmTarget = "21"
+	}
+}
+
+tasks.withType<Jar> {
+	archiveBaseName.set("app")
+	archiveVersion.set("0.0.1-SNAPSHOT")
+	manifest {
+		attributes["Main-Class"] = "com.yoandroide.crud_kotlin.ApplicationKt"
 	}
 }
 
