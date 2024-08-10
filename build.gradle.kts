@@ -24,13 +24,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
-
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly("org.postgresql:postgresql")
+
+	testImplementation("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
@@ -44,13 +45,14 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.withType<Jar> {
-	archiveBaseName.set("app")
+	archiveBaseName.set("crud-kotlin")
 	archiveVersion.set("0.0.1-SNAPSHOT")
 	manifest {
-		attributes["Main-Class"] = "com.yoandroide.crud_kotlin.ApplicationKt"
+		attributes["Main-Class"] = "com.yoandroide.crud_kotlin.CrudKotlinApplicationKt"
 	}
 }
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	systemProperty("spring.profiles.active", "test")
 }

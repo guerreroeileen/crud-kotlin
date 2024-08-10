@@ -29,3 +29,31 @@ This project is an example application using Spring Boot to build a web applicat
    ```bash
    git clone https://github.com/guerreroeileen/crud-kotlin.git
    cd crud-kotlin
+
+## Running the Application with Docker
+If you prefer to run the application using Docker, follow the steps below.
+### Steps
+1. Build the Docker Image:
+
+   ```bash
+   ./gradlew clean build
+   docker-compose up --build
+
+2. Run the Application:
+
+   ```bash
+   docker-compose up
+
+The application will be accessible at http://localhost:8080/crud-kotlin/api.
+
+3. Shut Down the Application:
+
+   ```bash
+   docker-compose down
+
+### Environment Variables
+You can configure the application using the .env file located in the project root. This file is used to pass environment variables to the Docker containers.
+
+### Troubleshooting
+- Build Errors: Ensure the JAR file is correctly named (crud-kotlin-0.0.1-SNAPSHOT.jar). If you encounter issues during the build process, verify that the build.gradle.kts configuration is correct.
+- Database Connection Issues: Ensure that the PostgreSQL container is running and accessible. Check the logs with docker-compose logs db to diagnose any database-related issues.
