@@ -44,14 +44,6 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
-tasks.withType<Jar> {
-	archiveBaseName.set("crud-kotlin")
-	archiveVersion.set("0.0.1-SNAPSHOT")
-	manifest {
-		attributes["Main-Class"] = "com.yoandroide.crud_kotlin.CrudKotlinApplicationKt"
-	}
-}
-
 tasks.withType<Test> {
 	useJUnitPlatform()
 	systemProperty("spring.profiles.active", "test")

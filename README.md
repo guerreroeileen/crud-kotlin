@@ -44,7 +44,7 @@ If you prefer to run the application using Docker, follow the steps below.
    ```bash
    docker-compose up
 
-The application will be accessible at http://localhost:8080/crud-kotlin/api.
+The application will be accessible at http://localhost:8080/crud-kotlin/api or using swagger at http://localhost:8080/crud-kotlin/api/swagger-ui/index.html#/
 
 3. Shut Down the Application:
 
