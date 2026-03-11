@@ -30,6 +30,20 @@ class PersonService (
         val savedPerson = personRepository.save(person)
         return savedPerson.toPersonResponse()
     }
+    fun updatePartialPerson(id: String, updates: Map<String, Any?>): PersonResponse {
+        val convertedId = UUID.fromString(id)
+        val personToBeUpdated =  personRepository.findById(convertedId).orElseThrow{ResourceNotFoundException("Person not found with id: $id")}
+        updates.forEach { (key, value) ->
+            when (key) {
+                "name" -> personToBeUpdated.name = value as String
+                "lastName" -> personToBeUpdated.lastName = value as String
+                "email" -> personToBeUpdated.email = value as String
+                "age" -> personToBeUpdated.age = value as Int
+            }
+        }
+        return personRepository.save(personToBeUpdated).toPersonResponse()
+
+    }
 
     fun deletePerson(id: UUID): Boolean {
         return if (personRepository.existsById(id)) {

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -34,6 +35,12 @@ class PersonController (private val personService: PersonService) {
     fun createPerson(@RequestBody personDTO: PersonDto): ResponseEntity<PersonResponse> {
         val createdPerson = personService.createPerson(personDTO)
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPerson)
+    }
+
+    @PatchMapping("/{id}")
+    fun updatePartialPerson(@PathVariable id: String, @RequestBody map: Map<String, Any?>): ResponseEntity<PersonResponse> {
+        val updatedPartialPerson = personService.updatePartialPerson(id, map)
+        return ResponseEntity.status(HttpStatus.OK).body(updatedPartialPerson)
     }
 
     @DeleteMapping("/{id}")
